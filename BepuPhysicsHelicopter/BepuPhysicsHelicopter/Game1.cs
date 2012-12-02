@@ -30,12 +30,22 @@ namespace BepuPhysicsHelicopter
         Vector3 groundPos = new Vector3(0, 0, 0);
 
 
+        HelicopterBase hBase;       // New HelicopterBase object
+
 
         float timeDelta;
         Camera camera;
         Space space;
         Cylinder cameraCylindar; 
         BepuEntity ground;
+
+        Joints joints;
+
+        public Joints Joints
+        {
+            get { return joints; }
+            set { joints = value; }
+        }
         
         public static Game1 Instance
         {
@@ -80,6 +90,8 @@ namespace BepuPhysicsHelicopter
 
             random = new Random();
 
+            hBase = new HelicopterBase();   // Instance of HelicopterBase
+            
             base.Initialize();
         }
 
@@ -92,9 +104,9 @@ namespace BepuPhysicsHelicopter
             ground.body = new Box(position, width, height, length);                 // Place it in the world and give it's dimensions
             ground.body.BecomeKinematic();                                          // Make the entity state
             ground.localTransform = Matrix.CreateScale(width, height, length);      // Scale the model
-            ground.diffuse = new Vector3((float)random.NextDouble(), (float)random.NextDouble(), (float)random.NextDouble());   // Set the colour
-            space.Add(ground.body);     // Add to the world
-            children.Add(ground);       // Add to the list of entities
+            ground.diffuse = new Vector3(225, 225, (float)random.NextDouble());     // Set the colour to a shade of yellow
+            space.Add(ground.body);                                                 // Add to the world
+            children.Add(ground);                                                   // Add to the list of entities
             return ground;
         }
 
@@ -117,6 +129,10 @@ namespace BepuPhysicsHelicopter
             space.Add(cameraCylindar);
 
             createGround(new Vector3(0, 0, 0), 300, 1, 300);            // Create the ground
+
+            hBase.createHelicopter(heliPos, 4, 4, 4);                   // Create a new helicopter base at the heliPos, with width, length and height 4
+
+            joints = new Joints(hBase);                                 // Add the helicopter base to the joints as part of the constructor
         }
 
 
@@ -155,6 +171,10 @@ namespace BepuPhysicsHelicopter
             }
 
             cameraCylindar.Position = camera.Position;  // Place the cylinder on the camera;
+
+            hBase.Update(gameTime);
+            joints.Update(gameTime);
+
             space.Update();
 
             base.Update(gameTime);
