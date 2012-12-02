@@ -29,8 +29,9 @@ namespace BepuPhysicsHelicopter
         Vector3 heliPos = new Vector3(0, 10, 10);
         Vector3 groundPos = new Vector3(0, 0, 0);
 
-
-        HelicopterBase hBase;       // New HelicopterBase object
+        // New BepuEntity objects
+        HelicopterBase hBase;
+        HelicopterRotor hRotor;
 
 
         float timeDelta;
@@ -91,6 +92,7 @@ namespace BepuPhysicsHelicopter
             random = new Random();
 
             hBase = new HelicopterBase();   // Instance of HelicopterBase
+            hRotor = new HelicopterRotor();
             
             base.Initialize();
         }
@@ -131,8 +133,9 @@ namespace BepuPhysicsHelicopter
             createGround(new Vector3(0, 0, 0), 300, 1, 300);            // Create the ground
 
             hBase.createHelicopter(heliPos, 4, 4, 4);                   // Create a new helicopter base at the heliPos, with width, length and height 4
+            hRotor.createRotor(heliPos, new Vector3(0, 4, 0), 2, .1f, 15);
 
-            joints = new Joints(hBase);                                 // Add the helicopter base to the joints as part of the constructor
+            joints = new Joints(hBase, hRotor);                                 // Add the helicopter base to the joints as part of the constructor
         }
 
 

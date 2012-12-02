@@ -28,7 +28,7 @@ namespace BepuPhysicsHelicopter
         public BepuEntity helicopter;
         KeyboardState keyState;
         float td, rotation;
-        Vector3 force, acceleration;
+        Vector3 force;
 
         public BepuEntity createHelicopter(Vector3 position, float width, float height, float length)
         {
@@ -45,7 +45,7 @@ namespace BepuPhysicsHelicopter
             return helicopter;
         }
 
-        public void forward(Vector3 appliedForce)
+        public void applyForce(Vector3 appliedForce)
         {
             force += appliedForce;
         }
@@ -66,11 +66,11 @@ namespace BepuPhysicsHelicopter
             // For all keyStates the engine must be on
             if (keyState.IsKeyDown(Keys.K) && Game1.Instance.Joints.engineOn)       
             {
-                forward(helicopter.Look * 10);      // Apply a diretional force in the direction the helicopter is looking
+                applyForce(helicopter.Look * 10);      // Apply a diretional force in the direction the helicopter is looking
             }
             else if (keyState.IsKeyDown(Keys.I) && Game1.Instance.Joints.engineOn)
             {
-                forward(helicopter.Look * -10);
+                applyForce(helicopter.Look * -10);
             }
             else
             {
@@ -88,19 +88,18 @@ namespace BepuPhysicsHelicopter
 
             if (keyState.IsKeyDown(Keys.Space) && Game1.Instance.Joints.engineOn)
             {
-                forward(Up * 5);                    // Increase the vertical velocity
+                applyForce(Up * 5);                    // Increase the vertical velocity
             }
             else if (keyState.IsKeyDown(Keys.C) && Game1.Instance.Joints.engineOn)
             {
-                forward(-Up * 5);
+                applyForce(-Up * 5);
             }
             else if (!keyState.IsKeyDown(Keys.Space) && Game1.Instance.Joints.engineOn)
             {
                 velocity -= velocity * td;
             }
 
-            acceleration = force;
-            velocity = velocity + acceleration * td;
+            velocity = velocity + force * td;
             helicopter.body.Position = helicopter.body.Position + velocity * td;
 
             force = Vector3.Zero;
