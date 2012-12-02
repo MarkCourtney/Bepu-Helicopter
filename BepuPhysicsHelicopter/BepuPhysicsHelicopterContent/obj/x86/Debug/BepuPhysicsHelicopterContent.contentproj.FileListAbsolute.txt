@@ -1,0 +1,1 @@
+\\psf\Home\Documents\Visual Studio 2010\Projects\BepuPhysicsHelicopter\BepuPhysicsHelicopter\BepuPhysicsHelicopterContent\obj\x86\Debug\ResolveAssemblyReference.cache
