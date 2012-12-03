@@ -20,16 +20,17 @@ namespace BepuPhysicsHelicopter
         HelicopterRotor hRotor;
         HelicopterSkid hSkid;
         HelicopterTail hTail;
+        HelicopterTailRotor hTailRotor;
 
         KeyboardState keyState, oldState;
 
-        RevoluteJoint hBaseRotorJoint;
+        RevoluteJoint hBaseRotorJoint, hTailRotorJoint;
 
         WeldJoint hTailJoint, hSkidJoint1, hSkidJoint2;
 
         public bool engineOn;
 
-        public Joints(HelicopterBase hb, HelicopterRotor hr, HelicopterSkid hs, HelicopterTail ht)
+        public Joints(HelicopterBase hb, HelicopterRotor hr, HelicopterSkid hs, HelicopterTail ht, HelicopterTailRotor htr)
         {
             engineOn = false;
 
@@ -37,6 +38,7 @@ namespace BepuPhysicsHelicopter
             hRotor = hr;
             hSkid = hs;
             hTail = ht;
+            hTailRotor = htr;
 
             hBaseRotorJoint = new RevoluteJoint(hBase.helicopter.body, hRotor.rotor.body, hBase.helicopter.body.Position, Vector3.Up);
             hBaseRotorJoint.Motor.Settings.MaximumForce = 200;
@@ -46,10 +48,15 @@ namespace BepuPhysicsHelicopter
             hSkidJoint1 = new WeldJoint(hSkid.skid1.body, hBase.helicopter.body);
             hSkidJoint2 = new WeldJoint(hSkid.skid2.body, hBase.helicopter.body);
 
+            hTailRotorJoint = new RevoluteJoint(hTailRotor.tailRotor.body, hTail.tail.body, hTailRotor.tailRotor.body.Position, Vector3.Right);
+            hTailRotorJoint.Motor.Settings.MaximumForce = 200;
+            hTailRotorJoint.Motor.IsActive = false;
+
             Game1.Instance.Space.Add(hBaseRotorJoint);
             Game1.Instance.Space.Add(hTailJoint);
             Game1.Instance.Space.Add(hSkidJoint1);
             Game1.Instance.Space.Add(hSkidJoint2);
+            Game1.Instance.Space.Add(hTailRotorJoint);
         }
 
         public override void Update(GameTime gameTime)
@@ -61,6 +68,7 @@ namespace BepuPhysicsHelicopter
                 engineOn = true;            // Turn the engine on  
 
                 hBaseRotorJoint.Motor.IsActive = true;  // Start the motor
+                hTailRotorJoint.Motor.IsActive = true;
 
                 oldState = keyState;
             }
@@ -70,6 +78,7 @@ namespace BepuPhysicsHelicopter
                 engineOn = false;           // Turn the engine off
 
                 hBaseRotorJoint.Motor.IsActive = false; // Stop the motor
+                hTailRotorJoint.Motor.IsActive = false;
 
                 oldState = keyState;
             }
@@ -77,14 +86,17 @@ namespace BepuPhysicsHelicopter
             if (engineOn)
             {
                 hBaseRotorJoint.Motor.Settings.VelocityMotor.GoalVelocity += 0.05f;     // Increase the rotation of the rotor around the center of the helicopter base
+                hTailRotorJoint.Motor.Settings.VelocityMotor.GoalVelocity += 0.05f;     // Increase the rotation of the rotor around the center of the helicopter base
             }
             else if (!engineOn)
             {
                 hBaseRotorJoint.Motor.Settings.VelocityMotor.GoalVelocity -= 0.05f;     // Decrease the rotation 
-                
+                hTailRotorJoint.Motor.Settings.VelocityMotor.GoalVelocity -= 0.05f;
+
                 if (hBaseRotorJoint.Motor.Settings.VelocityMotor.GoalVelocity < 0)
                 {
                     hBaseRotorJoint.Motor.Settings.VelocityMotor.GoalVelocity = 0;
+                    hTailRotorJoint.Motor.Settings.VelocityMotor.GoalVelocity = 0;
                 }
             }
         }

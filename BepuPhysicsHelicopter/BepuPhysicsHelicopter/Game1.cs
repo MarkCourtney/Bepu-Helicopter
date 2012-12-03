@@ -35,6 +35,7 @@ namespace BepuPhysicsHelicopter
         HelicopterRotor hRotor;
         HelicopterSkid hSkid;
         HelicopterTail hTail;
+        HelicopterTailRotor hTailRotor;
 
 
         float timeDelta;
@@ -101,6 +102,7 @@ namespace BepuPhysicsHelicopter
             hRotor = new HelicopterRotor();
             hSkid = new HelicopterSkid();
             hTail = new HelicopterTail();
+            hTailRotor = new HelicopterTailRotor();
             
             base.Initialize();
         }
@@ -114,7 +116,7 @@ namespace BepuPhysicsHelicopter
             ground.body = new Box(position, width, height, length);                 // Place it in the world and give it's dimensions
             ground.body.BecomeKinematic();                                          // Make the entity state
             ground.localTransform = Matrix.CreateScale(width, height, length);      // Scale the model
-            ground.diffuse = new Vector3(225, 225, (float)random.NextDouble());     // Set the colour to a shade of yellow
+            ground.diffuse = new Vector3(0.15f, 0.15f, 0.3f);                       // Set the colour to a shade of yellow
             space.Add(ground.body);                                                 // Add to the world
             children.Add(ground);                                                   // Add to the list of entities
             return ground;
@@ -148,7 +150,10 @@ namespace BepuPhysicsHelicopter
             hSkid.createSkid1(heliPos, new Vector3(3, -5, 0), 1, 1, 10);
             hSkid.createSkid2(heliPos, new Vector3(-3, -5, 0), 1, 1, 10);
 
-            joints = new Joints(hBase, hRotor, hSkid, hTail);                                 // Add the helicopter base to the joints as part of the constructor
+
+            hTailRotor.createTailRotor(heliPos, new Vector3(2, 0, 12), .1f, 1f, 5f);
+
+            joints = new Joints(hBase, hRotor, hSkid, hTail, hTailRotor);                                 // Add the helicopter base to the joints as part of the constructor
         }
 
 
