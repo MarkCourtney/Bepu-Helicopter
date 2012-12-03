@@ -153,9 +153,9 @@ namespace BepuPhysicsHelicopter
 
             hTailRotor.createTailRotor(heliPos, new Vector3(2, 0, 12), .1f, 1f, 5f);
 
-            hClawHolder.createClawHolder(new Vector3(20, 10, 10), 5, 2);
+            hClawHolder.createClawHolder(heliPos, new Vector3(0, -7, 0), 5, 2);
 
-            joints = new Joints(hBase, hRotor, hSkid, hTail, hTailRotor);                                 // Add the helicopter base to the joints as part of the constructor
+            joints = new Joints(hBase, hRotor, hSkid, hTail, hTailRotor, hClawHolder);                                 // Add the helicopter base to the joints as part of the constructor
         }
 
 

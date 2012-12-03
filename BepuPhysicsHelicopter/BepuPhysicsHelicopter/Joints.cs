@@ -21,16 +21,19 @@ namespace BepuPhysicsHelicopter
         HelicopterSkid hSkid;
         HelicopterTail hTail;
         HelicopterTailRotor hTailRotor;
+        HelicopterClawHolder hClawHolder;
 
         KeyboardState keyState, oldState;
 
         RevoluteJoint hBaseRotorJoint, hTailRotorJoint;
 
+        SwivelHingeJoint hClawHolderJoint;
+
         WeldJoint hTailJoint, hSkidJoint1, hSkidJoint2;
 
         public bool engineOn;
 
-        public Joints(HelicopterBase hb, HelicopterRotor hr, HelicopterSkid hs, HelicopterTail ht, HelicopterTailRotor htr)
+        public Joints(HelicopterBase hb, HelicopterRotor hr, HelicopterSkid hs, HelicopterTail ht, HelicopterTailRotor htr, HelicopterClawHolder hch)
         {
             engineOn = false;
 
@@ -39,6 +42,7 @@ namespace BepuPhysicsHelicopter
             hSkid = hs;
             hTail = ht;
             hTailRotor = htr;
+            hClawHolder = hch;
 
             hBaseRotorJoint = new RevoluteJoint(hBase.helicopter.body, hRotor.rotor.body, hBase.helicopter.body.Position, Vector3.Up);
             hBaseRotorJoint.Motor.Settings.MaximumForce = 200;
@@ -52,16 +56,28 @@ namespace BepuPhysicsHelicopter
             hTailRotorJoint.Motor.Settings.MaximumForce = 180;
             hTailRotorJoint.Motor.IsActive = false;
 
+            hClawHolderJoint = new SwivelHingeJoint(hBase.helicopter.body, hClawHolder.clawHolder.body, hBase.helicopter.body.Position , Vector3.Right);
+           
+            hClawHolderJoint.HingeLimit.IsActive = true;
+            hClawHolderJoint.HingeLimit.MinimumAngle = -MathHelper.Pi/12;
+            hClawHolderJoint.HingeLimit.MaximumAngle = MathHelper.Pi/12;
+
             Game1.Instance.Space.Add(hBaseRotorJoint);
             Game1.Instance.Space.Add(hTailJoint);
             Game1.Instance.Space.Add(hSkidJoint1);
             Game1.Instance.Space.Add(hSkidJoint2);
             Game1.Instance.Space.Add(hTailRotorJoint);
+            Game1.Instance.Space.Add(hClawHolderJoint);
         }
 
         public override void Update(GameTime gameTime)
         {
             keyState = Keyboard.GetState();
+
+            if (keyState.IsKeyDown(Keys.F))
+            {
+
+            }
 
             if (keyState.IsKeyDown(Keys.P) && !oldState.Equals(keyState))   // Ensure you can't press P twice in a row
             {
