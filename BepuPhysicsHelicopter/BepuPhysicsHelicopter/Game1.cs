@@ -36,7 +36,7 @@ namespace BepuPhysicsHelicopter
         HelicopterSkid hSkid;
         HelicopterTail hTail;
         HelicopterTailRotor hTailRotor;
-
+        HelicopterClawHolder hClawHolder;
 
         float timeDelta;
         Camera camera;
@@ -103,6 +103,7 @@ namespace BepuPhysicsHelicopter
             hSkid = new HelicopterSkid();
             hTail = new HelicopterTail();
             hTailRotor = new HelicopterTailRotor();
+            hClawHolder = new HelicopterClawHolder();
             
             base.Initialize();
         }
@@ -150,8 +151,9 @@ namespace BepuPhysicsHelicopter
             hSkid.createSkid1(heliPos, new Vector3(3, -5, 0), 1, 1, 10);
             hSkid.createSkid2(heliPos, new Vector3(-3, -5, 0), 1, 1, 10);
 
-
             hTailRotor.createTailRotor(heliPos, new Vector3(2, 0, 12), .1f, 1f, 5f);
+
+            hClawHolder.createClawHolder(new Vector3(20, 10, 10), 5, 2);
 
             joints = new Joints(hBase, hRotor, hSkid, hTail, hTailRotor);                                 // Add the helicopter base to the joints as part of the constructor
         }

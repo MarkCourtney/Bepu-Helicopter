@@ -49,7 +49,7 @@ namespace BepuPhysicsHelicopter
             hSkidJoint2 = new WeldJoint(hSkid.skid2.body, hBase.helicopter.body);
 
             hTailRotorJoint = new RevoluteJoint(hTailRotor.tailRotor.body, hTail.tail.body, hTailRotor.tailRotor.body.Position, Vector3.Right);
-            hTailRotorJoint.Motor.Settings.MaximumForce = 200;
+            hTailRotorJoint.Motor.Settings.MaximumForce = 180;
             hTailRotorJoint.Motor.IsActive = false;
 
             Game1.Instance.Space.Add(hBaseRotorJoint);
@@ -86,12 +86,12 @@ namespace BepuPhysicsHelicopter
             if (engineOn)
             {
                 hBaseRotorJoint.Motor.Settings.VelocityMotor.GoalVelocity += 0.05f;     // Increase the rotation of the rotor around the center of the helicopter base
-                hTailRotorJoint.Motor.Settings.VelocityMotor.GoalVelocity += 0.05f;     // Increase the rotation of the rotor around the center of the helicopter base
+                hTailRotorJoint.Motor.Settings.VelocityMotor.GoalVelocity += 0.045f;     // Increase the rotation of the rotor around the center of the helicopter base
             }
             else if (!engineOn)
             {
                 hBaseRotorJoint.Motor.Settings.VelocityMotor.GoalVelocity -= 0.05f;     // Decrease the rotation 
-                hTailRotorJoint.Motor.Settings.VelocityMotor.GoalVelocity -= 0.05f;
+                hTailRotorJoint.Motor.Settings.VelocityMotor.GoalVelocity -= 0.045f;
 
                 if (hBaseRotorJoint.Motor.Settings.VelocityMotor.GoalVelocity < 0)
                 {

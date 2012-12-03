@@ -99,6 +99,15 @@ namespace BepuPhysicsHelicopter
                 velocity -= velocity * td;
             }
 
+            if (!Game1.Instance.Joints.engineOn)
+            {
+                applyForce(-Up * 4);
+            }
+            if (helicopter.body.Position.Y < 7)
+            {
+                applyForce(Up * 1000);
+            }
+
             velocity = velocity + force * td;
             helicopter.body.Position = helicopter.body.Position + velocity * td;
 
