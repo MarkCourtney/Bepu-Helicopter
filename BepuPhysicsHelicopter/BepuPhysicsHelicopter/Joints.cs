@@ -18,25 +18,38 @@ namespace BepuPhysicsHelicopter
     {
         HelicopterBase hBase;
         HelicopterRotor hRotor;
+        HelicopterSkid hSkid;
+        HelicopterTail hTail;
 
         KeyboardState keyState, oldState;
 
         RevoluteJoint hBaseRotorJoint;
 
+        WeldJoint hTailJoint, hSkidJoint1, hSkidJoint2;
+
         public bool engineOn;
 
-        public Joints(HelicopterBase hb, HelicopterRotor hr)
+        public Joints(HelicopterBase hb, HelicopterRotor hr, HelicopterSkid hs, HelicopterTail ht)
         {
             engineOn = false;
 
             hBase = hb;
             hRotor = hr;
+            hSkid = hs;
+            hTail = ht;
 
-            hBaseRotorJoint = new RevoluteJoint(hBase.helicopter.body, hRotor.rotor.body, hBase.helicopter.body.Position, Vector3.Right);
+            hBaseRotorJoint = new RevoluteJoint(hBase.helicopter.body, hRotor.rotor.body, hBase.helicopter.body.Position, Vector3.Up);
             hBaseRotorJoint.Motor.Settings.MaximumForce = 200;
             hBaseRotorJoint.Motor.IsActive = false;
 
+            hTailJoint = new WeldJoint(hTail.tail.body, hBase.helicopter.body);
+            hSkidJoint1 = new WeldJoint(hSkid.skid1.body, hBase.helicopter.body);
+            hSkidJoint2 = new WeldJoint(hSkid.skid2.body, hBase.helicopter.body);
+
             Game1.Instance.Space.Add(hBaseRotorJoint);
+            Game1.Instance.Space.Add(hTailJoint);
+            Game1.Instance.Space.Add(hSkidJoint1);
+            Game1.Instance.Space.Add(hSkidJoint2);
         }
 
         public override void Update(GameTime gameTime)

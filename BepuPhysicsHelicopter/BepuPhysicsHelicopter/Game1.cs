@@ -16,6 +16,7 @@ namespace BepuPhysicsHelicopter
     public class Game1 : Microsoft.Xna.Framework.Game
     {
         static Game1 instance = null;
+        DepthStencilState state;
 
         Texture2D crosshairs;
         SpriteBatch spriteBatch;
@@ -32,6 +33,8 @@ namespace BepuPhysicsHelicopter
         // New BepuEntity objects
         HelicopterBase hBase;
         HelicopterRotor hRotor;
+        HelicopterSkid hSkid;
+        HelicopterTail hTail;
 
 
         float timeDelta;
@@ -77,6 +80,9 @@ namespace BepuPhysicsHelicopter
             graphics.IsFullScreen = false;
             graphics.SynchronizeWithVerticalRetrace = true;
 
+            state = new DepthStencilState();
+            state.DepthBufferEnable = true;
+
             Content.RootDirectory = "Content";
         }
 
@@ -93,6 +99,8 @@ namespace BepuPhysicsHelicopter
 
             hBase = new HelicopterBase();   // Instance of HelicopterBase
             hRotor = new HelicopterRotor();
+            hSkid = new HelicopterSkid();
+            hTail = new HelicopterTail();
             
             base.Initialize();
         }
@@ -135,7 +143,12 @@ namespace BepuPhysicsHelicopter
             hBase.createHelicopter(heliPos, 4, 4, 4);                   // Create a new helicopter base at the heliPos, with width, length and height 4
             hRotor.createRotor(heliPos, new Vector3(0, 4, 0), 2, .1f, 15);
 
-            joints = new Joints(hBase, hRotor);                                 // Add the helicopter base to the joints as part of the constructor
+            hTail.createTail(heliPos, new Vector3(0, 0, 8), 1, 10, 1);
+
+            hSkid.createSkid1(heliPos, new Vector3(3, -5, 0), 1, 1, 10);
+            hSkid.createSkid2(heliPos, new Vector3(-3, -5, 0), 1, 1, 10);
+
+            joints = new Joints(hBase, hRotor, hSkid, hTail);                                 // Add the helicopter base to the joints as part of the constructor
         }
 
 
@@ -189,7 +202,9 @@ namespace BepuPhysicsHelicopter
             spriteBatch.Begin();
             foreach (GameEntity child in children)
             {
-                child.Draw(gameTime);                   // Draw all the game entities
+
+                GraphicsDevice.DepthStencilState = state;
+                child.Draw(gameTime);
             }
             Vector2 center = Vector2.Zero, origin = Vector2.Zero;
             center.X = graphics.PreferredBackBufferWidth / 2;

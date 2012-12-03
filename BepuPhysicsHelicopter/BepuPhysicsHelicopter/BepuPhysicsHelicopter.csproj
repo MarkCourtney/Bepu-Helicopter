@@ -119,6 +119,12 @@
     <Compile Include="HelicopterRotor.cs">
       <SubType>Code</SubType>
     </Compile>
+    <Compile Include="HelicopterSkid.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="HelicopterTail.cs">
+      <SubType>Code</SubType>
+    </Compile>
     <Compile Include="Joints.cs">
       <SubType>Code</SubType>
     </Compile>
