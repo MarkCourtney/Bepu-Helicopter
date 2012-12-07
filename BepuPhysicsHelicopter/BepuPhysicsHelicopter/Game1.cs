@@ -203,7 +203,6 @@ namespace BepuPhysicsHelicopter
             hTailRotor.createTailRotor(heliPos, new Vector3(2, 0, 12), .1f, 1f, 5f);
 
 
-
             hClawHolder.createClawHolder(heliPos, new Vector3(0, -7, 0), 5, 2);
 
             hClawHinge.createClawHinge1(heliPos, new Vector3(5, -10, 0), 5, .1f, 2);

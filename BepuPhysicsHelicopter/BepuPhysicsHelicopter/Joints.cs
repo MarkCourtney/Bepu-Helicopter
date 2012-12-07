@@ -39,6 +39,8 @@ namespace BepuPhysicsHelicopter
 
         KeyboardState keyState, oldState;
 
+
+        Random random = new Random();
         // New Joints
         RevoluteJoint hBaseRotorJoint, hTailRotorJoint, hClawHingeJoint1, hClawHingeJoint2, hClawHingeJoint3, hClawHingeJoint4, seeSawJoint;
 
@@ -48,6 +50,7 @@ namespace BepuPhysicsHelicopter
 
         List<RevoluteJoint> revoluteJoints = new List<RevoluteJoint>();
         List<WeldJoint> weldJoints = new List<WeldJoint>();
+        List<BepuEntity> entities = new List<BepuEntity>();
 
         public bool engineOn;
 
@@ -168,6 +171,26 @@ namespace BepuPhysicsHelicopter
             weldJoints.Add(hClawItemHolderJoint3);
             weldJoints.Add(hClawItemHolderJoint4);
 
+            
+
+
+            entities.Add(hBase.helicopter);
+            entities.Add(hRotor.rotor);
+            entities.Add(hSkid.skid1);
+            entities.Add(hSkid.skid2);
+            entities.Add(hTail.tail);
+            entities.Add(hTailRotor.tailRotor);
+            entities.Add(hClawHolder.clawHolder);
+
+            entities.Add(hClawHinge.clawHinge1);
+            entities.Add(hClawHinge.clawHinge2);
+            entities.Add(hClawHinge.clawHinge3);
+            entities.Add(hClawHinge.clawHinge4);
+            entities.Add(hClawItemHolder.clawItemHolder1);
+            entities.Add(hClawItemHolder.clawItemHolder2);
+            entities.Add(hClawItemHolder.clawItemHolder3);
+            entities.Add(hClawItemHolder.clawItemHolder4);
+
             for (int i = 0; i < revoluteJoints.Count ; i++)
             {
                 Game1.Instance.Space.Add(revoluteJoints.ElementAt(i));
@@ -188,21 +211,29 @@ namespace BepuPhysicsHelicopter
 
             if (keyState.IsKeyDown(Keys.T) || GamePad.GetState(PlayerIndex.One).Buttons.LeftShoulder == ButtonState.Pressed)
             {
-                for (int i = 0; i < revoluteJoints.Count; i++)
+                for (int i = 0; i < revoluteJoints.Count; i++)  // Remove all the revolute joints
                 {
                     revoluteJoints.ElementAt(i).IsActive = false;
                 }
 
-                for (int i = 0; i < weldJoints.Count; i++)
+                for (int i = 0; i < weldJoints.Count; i++)      // Remove all the weld joints
                 {
                     weldJoints.ElementAt(i).IsActive = false;
                 }
 
-                hClawHolderJoint.IsActive = false;
+                hClawHolderJoint.IsActive = false;      // Remove all the swivel hinge joint
 
-                hBase.helicopter.body.BecomeDynamic(1000);
 
-                engineOn = false;
+
+                for (int i = 0; i < entities.Count; i++)
+                {
+                    // Send each element in the list in a random direction
+                    entities.ElementAt(i).body.AngularVelocity = new Vector3((float)random.Next(10, 15), (float)random.Next(10, 15), (float)random.Next(10, 15));
+                }
+
+                hBase.helicopter.body.BecomeDynamic(1);
+
+                engineOn = false;   // Turn off the engine;
             }
 
             // Applied keyboard and XBox Controller inputs

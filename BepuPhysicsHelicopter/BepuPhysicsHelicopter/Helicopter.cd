@@ -1,0 +1,123 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<ClassDiagram MajorVersion="1" MinorVersion="1">
+  <Class Name="BepuPhysicsHelicopter.HelicopterBase" Collapsed="true">
+    <Position X="4.5" Y="3" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>BAwAAAAAAAAAAAAAAACAAQAAABIAAAAAAAQAAAAAAAI=</HashCode>
+      <FileName>HelicopterBase.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="BepuPhysicsHelicopter.seeSaw" Collapsed="true">
+    <Position X="14.5" Y="6" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AQAAAAAAAABAAAAAgAAYAAAAAAAAAAAAACQAAAAAAAA=</HashCode>
+      <FileName>SeaSaw.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="BepuPhysicsHelicopter.HelicopterClawHinge" Collapsed="true">
+    <Position X="6.25" Y="3" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>ANLwAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>HelicopterClawHinge.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="BepuPhysicsHelicopter.HelicopterClawHolder" Collapsed="true">
+    <Position X="8" Y="3" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAAAAAABAAAAAAAQAAQAAAAAAAA=</HashCode>
+      <FileName>HelicopterClawHolder.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="BepuPhysicsHelicopter.HelicopterClawItemHolder" Collapsed="true">
+    <Position X="9.75" Y="3" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAAAgIAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>HelicopterClawItemHolder.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="BepuPhysicsHelicopter.HelicopterRotor" Collapsed="true">
+    <Position X="4.5" Y="4" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAQAAAAAAAAAAAAAAAAAAAAAAAAAAAEAAAABAAAAAAA=</HashCode>
+      <FileName>HelicopterRotor.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="BepuPhysicsHelicopter.HelicopterSkid" Collapsed="true">
+    <Position X="6.25" Y="4" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAQAAgAAAAIAAAAEAAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>HelicopterSkid.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="BepuPhysicsHelicopter.HelicopterTail" Collapsed="true">
+    <Position X="8" Y="4" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAIAAAAAAAAAAAAAAAAAAAAAAAAAAAgA=</HashCode>
+      <FileName>HelicopterTail.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="BepuPhysicsHelicopter.HelicopterTailRotor" Collapsed="true">
+    <Position X="9.75" Y="4" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAAAQAAAAEAAAAAAAAAAA=</HashCode>
+      <FileName>HelicopterTailRotor.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="BepuPhysicsHelicopter.Joints" Collapsed="true">
+    <Position X="4.5" Y="5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>BQQAgAAAQAgAgCAEIYAgCAAAAtAKgUAAAAQQQBACACE=</HashCode>
+      <FileName>Joints.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="BepuPhysicsHelicopter.OtherEntities" Collapsed="true">
+    <Position X="6" Y="6" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAQAgAAAAAAAAAAAAAAAggAAAAAAIAAAAAQAAAAAAAA=</HashCode>
+      <FileName>OtherEntities.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="BepuPhysicsHelicopter.Program" Collapsed="true">
+    <Position X="8" Y="5.75" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAABAAAAAA=</HashCode>
+      <FileName>Program.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="BepuPhysicsHelicopter.Ground" Collapsed="true">
+    <Position X="13.75" Y="3.75" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAQAAAAAAAAAAAAAAQAAAAAAAAAAAAAAAABQAAAAAA=</HashCode>
+      <FileName>Ground.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="BepuPhysicsHelicopter.GameEntity" Collapsed="true">
+    <Position X="12" Y="2.25" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>ABQQEAACAAAAAgAgAAAAAAIAAAAAAAAACAQAAAAIAAQ=</HashCode>
+      <FileName>GameEntity.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="BepuPhysicsHelicopter.Camera" Collapsed="true">
+    <Position X="15" Y="2.25" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>ABQAEAAAAAEAAgAAAAAAAAAAABAAAAEAAQAAAAAAAAQ=</HashCode>
+      <FileName>Camera.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="BepuPhysicsHelicopter.BepuEntity" Collapsed="true">
+    <Position X="12.5" Y="5.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAQAAAAAAAAAAAAAAAAAAAAAAQAAAAAAAAAAAAAAAAQ=</HashCode>
+      <FileName>BepuEntity.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="BepuPhysicsHelicopter.Game1" Collapsed="true">
+    <Position X="10.5" Y="5.75" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>BQSCgWAAAgIggyQEIAAEABACQBBAimgMQQwBQAAAAAU=</HashCode>
+      <FileName>Game1.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Font Name="Segoe UI" Size="9" />
+</ClassDiagram>
