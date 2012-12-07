@@ -13,9 +13,6 @@ using BEPUphysics.Entities.Prefabs;
 
 namespace BepuPhysicsHelicopter
 {
-    /// <summary>
-    /// This is a game component that implements IUpdateable.
-    /// </summary>
     public class HelicopterClawHinge : GameEntity
     {
         public BepuEntity clawHinge1, clawHinge2, clawHinge3, clawHinge4;

@@ -19,9 +19,7 @@ namespace BepuPhysicsHelicopter
     public class BepuEntity : GameEntity
     {
         public BEPUphysics.Entities.Entity body;
-        AudioEmitter emitter = new AudioEmitter();
-        AudioListener listener = new AudioListener();
-
+       
         public override void LoadContent()
         {
             base.LoadContent();

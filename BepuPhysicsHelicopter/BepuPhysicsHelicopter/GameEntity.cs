@@ -22,10 +22,7 @@ namespace BepuPhysicsHelicopter
         public Vector3 diffuse = new Vector3(1, 1, 1);
         public Quaternion quaternion;
 
-        public Vector3 Right = new Vector3(1.0f, 0.0f, 0.0f);
-        public Vector3 Up = new Vector3(0.0f, 1.0f, 0.0f);
         public Vector3 Look = new Vector3(0, 0, -1);
-        public Vector3 basis = new Vector3(0, 0, -1);
 
         public Matrix worldTransform = Matrix.Identity;
         public Matrix localTransform = Matrix.Identity;
@@ -64,31 +61,6 @@ namespace BepuPhysicsHelicopter
 
         public virtual void UnloadContent()
         {
-        }
-
-        public void yaw(float angle)
-        {
-            Matrix T = Matrix.CreateRotationY(angle);
-            Right = Vector3.Transform(Right, T);
-            Look = Vector3.Transform(Look, T);
-        }
-
-        public void pitch(float angle)
-        {
-            Matrix T = Matrix.CreateFromAxisAngle(Right, angle);
-            Look = Vector3.Transform(Look, T);
-
-        }
-
-
-        public void walk(float amount)
-        {
-            Position += Look * amount;
-        }
-
-        public void strafe(float amount)
-        {
-            Position += Right * amount;
         }
     }
 }

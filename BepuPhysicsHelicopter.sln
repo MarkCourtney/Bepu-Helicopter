@@ -3,7 +3,7 @@ Microsoft Visual Studio Solution File, Format Version 11.00
 # Visual Studio 2010
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "BepuPhysicsHelicopter", "BepuPhysicsHelicopter\BepuPhysicsHelicopter\BepuPhysicsHelicopter.csproj", "{5146ED90-0898-4A82-81A5-E226F7AAC5CE}"
 EndProject
-Project("{96E2B04D-8817-42C6-938A-82C39BA4D311}") = "BepuPhysicsHelicopterContent", "BepuPhysicsHelicopter\BepuPhysicsHelicopterContent\BepuPhysicsHelicopterContent.contentproj", "{96C8ABD1-5732-45C0-B3A9-B4E6CEE6C267}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "BepuPhysicsHelicopterContent", "BepuPhysicsHelicopter\BepuPhysicsHelicopterContent\BepuPhysicsHelicopterContent.contentproj", "{96C8ABD1-5732-45C0-B3A9-B4E6CEE6C267}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution

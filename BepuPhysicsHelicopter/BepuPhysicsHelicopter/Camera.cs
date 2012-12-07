@@ -14,12 +14,8 @@ namespace BepuPhysicsHelicopter
 {
     public class Camera : GameEntity
     {
-
         public Matrix projection;
         public Matrix view;
-        private KeyboardState keyboardState;
-        private MouseState mouseState;
-
 
         public override void Draw(GameTime gameTime)
         {
@@ -31,80 +27,12 @@ namespace BepuPhysicsHelicopter
         {
         }
 
-        public Camera()
-        {
-            Position = new Vector3(0.0f, 30.0f, 50.0f);
-            Look = new Vector3(0.0f, -0.5f, -1.0f);
-        }
-
         public override void Update(GameTime gameTime)
         {
             float timeDelta = (float)(gameTime.ElapsedGameTime.Milliseconds / 1000.0f);
 
-            keyboardState = Keyboard.GetState();
-            mouseState = Mouse.GetState();
 
-            int mouseX = mouseState.X;
-            int mouseY = mouseState.Y;
-
-            int midX = GraphicsDeviceManager.DefaultBackBufferHeight / 2;
-            int midY = GraphicsDeviceManager.DefaultBackBufferWidth / 2;
-
-            int deltaX = mouseX - midX;
-            int deltaY = mouseY - midY;
-
-            yaw(-(float)deltaX / 1000.0f);
-            pitch(-(float)deltaY / 1000.0f);
-            Mouse.SetPosition(midX, midY);
-
-
-            if (keyboardState.IsKeyDown(Keys.LeftShift))
-            {
-                timeDelta *= 20.0f;
-            }
-
-            if (keyboardState.IsKeyDown(Keys.W))
-            {
-                walk(timeDelta * 20);
-            }
-
-            if (keyboardState.IsKeyDown(Keys.S))
-            {
-                walk(-timeDelta * 20);
-            }
-
-            if (keyboardState.IsKeyDown(Keys.A))
-            {
-                strafe(-timeDelta * 20);
-            }
-
-            if (keyboardState.IsKeyDown(Keys.D))
-            {
-                strafe(timeDelta * 20);
-            }
-
-
-            //if (keyboardState.IsKeyDown(Keys.I) && Game1.Instance.Joints.engineOn)
-            //{
-            //    walk(timeDelta * 10);
-            //}
-
-            //if (keyboardState.IsKeyDown(Keys.K) && Game1.Instance.Joints.engineOn)
-            //{
-            //    walk(-timeDelta * 10);
-            //}
-
-            //if (keyboardState.IsKeyDown(Keys.J))
-            //{
-            //    strafe(-timeDelta * 20);
-            //}
-
-            //if (keyboardState.IsKeyDown(Keys.L))
-            //{
-            //    strafe(timeDelta * 20);
-            //}
-
-            view = Matrix.CreateLookAt(Position, Position + Look, Up);
+            // view is set using the setView() method
             projection = Matrix.CreatePerspectiveFieldOfView(MathHelper.ToRadians(45.0f), Game1.Instance.GraphicsDeviceManager.GraphicsDevice.Viewport.AspectRatio, 1.0f, 10000.0f);
         }
 
@@ -115,6 +43,12 @@ namespace BepuPhysicsHelicopter
 
         public Matrix getView()
         {
+            return view;
+        }
+
+        public Matrix setView(Vector3 look, Vector3 target)
+        {
+            view = Matrix.CreateLookAt(Position - look, target + Vector3.Up, Vector3.Up);
             return view;
         }
     }
