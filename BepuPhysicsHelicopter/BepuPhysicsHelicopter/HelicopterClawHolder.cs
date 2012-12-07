@@ -23,7 +23,7 @@ namespace BepuPhysicsHelicopter
             clawHolder = new BepuEntity();
             clawHolder.modelName = "cube";
             clawHolder.LoadContent();
-            clawHolder.body = new Box(position + offSet, radius, height, radius, 1);
+            clawHolder.body = new Box(position + offSet, radius, height, radius, 100);
             clawHolder.localTransform = Matrix.CreateScale(radius, height, radius);
             Game1.Instance.Space.Add(clawHolder.body);
             Game1.Instance.Children.Add(clawHolder);

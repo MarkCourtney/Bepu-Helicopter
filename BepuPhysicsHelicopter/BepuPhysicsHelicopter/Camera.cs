@@ -20,6 +20,7 @@ namespace BepuPhysicsHelicopter
         private KeyboardState keyboardState;
         private MouseState mouseState;
 
+
         public override void Draw(GameTime gameTime)
         {
         }
@@ -81,6 +82,27 @@ namespace BepuPhysicsHelicopter
             {
                 strafe(timeDelta * 20);
             }
+
+
+            //if (keyboardState.IsKeyDown(Keys.I) && Game1.Instance.Joints.engineOn)
+            //{
+            //    walk(timeDelta * 10);
+            //}
+
+            //if (keyboardState.IsKeyDown(Keys.K) && Game1.Instance.Joints.engineOn)
+            //{
+            //    walk(-timeDelta * 10);
+            //}
+
+            //if (keyboardState.IsKeyDown(Keys.J))
+            //{
+            //    strafe(-timeDelta * 20);
+            //}
+
+            //if (keyboardState.IsKeyDown(Keys.L))
+            //{
+            //    strafe(timeDelta * 20);
+            //}
 
             view = Matrix.CreateLookAt(Position, Position + Look, Up);
             projection = Matrix.CreatePerspectiveFieldOfView(MathHelper.ToRadians(45.0f), Game1.Instance.GraphicsDeviceManager.GraphicsDevice.Viewport.AspectRatio, 1.0f, 10000.0f);

@@ -80,6 +80,7 @@ namespace BepuPhysicsHelicopter
 
         }
 
+
         public void walk(float amount)
         {
             Position += Look * amount;

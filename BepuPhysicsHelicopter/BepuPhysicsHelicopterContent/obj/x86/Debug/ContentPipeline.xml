@@ -2,6 +2,15 @@
 <XnaContent xmlns:Pipeline="Microsoft.Xna.Framework.Content.Pipeline">
   <Asset Type="Pipeline:BuildItemCollection">
     <Item>
+      <Source>sprites_crosshairs.png</Source>
+      <Name>sprites_crosshairs</Name>
+      <Importer>TextureImporter</Importer>
+      <Processor>TextureProcessor</Processor>
+      <Options>None</Options>
+      <Output>\\psf\Home\Documents\Visual Studio 2010\Projects\BepuPhysicsHelicopter\BepuPhysicsHelicopter\BepuPhysicsHelicopter\bin\x86\Debug\Content\sprites_crosshairs.xnb</Output>
+      <Time>2012-12-01T00:08:14+00:00</Time>
+    </Item>
+    <Item>
       <Source>cube.fbx</Source>
       <Name>cube</Name>
       <Importer>FbxImporter</Importer>
@@ -11,7 +20,7 @@
       <Time>2012-12-01T00:08:14+00:00</Time>
       <Dependency>
         <Key>obj\x86\Debug\cube_0.xml</Key>
-        <Value>2012-12-01T23:53:10+00:00</Value>
+        <Value>2012-12-06T18:01:48+00:00</Value>
       </Dependency>
     </Item>
     <Item>
@@ -24,17 +33,21 @@
       <Time>2012-12-01T00:08:14+00:00</Time>
       <Dependency>
         <Key>obj\x86\Debug\cyl1_0.xml</Key>
-        <Value>2012-12-01T23:53:10+00:00</Value>
+        <Value>2012-12-06T18:01:48+00:00</Value>
       </Dependency>
     </Item>
     <Item>
-      <Source>sprites_crosshairs.png</Source>
-      <Name>sprites_crosshairs</Name>
-      <Importer>TextureImporter</Importer>
-      <Processor>TextureProcessor</Processor>
+      <Source>sphere.fbx</Source>
+      <Name>sphere</Name>
+      <Importer>FbxImporter</Importer>
+      <Processor>ModelProcessor</Processor>
       <Options>None</Options>
-      <Output>\\psf\Home\Documents\Visual Studio 2010\Projects\BepuPhysicsHelicopter\BepuPhysicsHelicopter\BepuPhysicsHelicopter\bin\x86\Debug\Content\sprites_crosshairs.xnb</Output>
+      <Output>\\psf\Home\Documents\Visual Studio 2010\Projects\BepuPhysicsHelicopter\BepuPhysicsHelicopter\BepuPhysicsHelicopter\bin\x86\Debug\Content\sphere.xnb</Output>
       <Time>2012-12-01T00:08:14+00:00</Time>
+      <Dependency>
+        <Key>obj\x86\Debug\sphere_0.xml</Key>
+        <Value>2012-12-06T18:01:48+00:00</Value>
+      </Dependency>
     </Item>
     <Item>
       <Source>cube.fbx</Source>
@@ -52,23 +65,28 @@
     </Item>
     <Item>
       <Source>sphere.fbx</Source>
-      <Name>sphere</Name>
-      <Importer>FbxImporter</Importer>
-      <Processor>ModelProcessor</Processor>
-      <Options>None</Options>
-      <Output>\\psf\Home\Documents\Visual Studio 2010\Projects\BepuPhysicsHelicopter\BepuPhysicsHelicopter\BepuPhysicsHelicopter\bin\x86\Debug\Content\sphere.xnb</Output>
-      <Time>2012-12-01T00:08:14+00:00</Time>
-      <Dependency>
-        <Key>obj\x86\Debug\sphere_0.xml</Key>
-        <Value>2012-12-02T18:00:52+00:00</Value>
-      </Dependency>
-    </Item>
-    <Item>
-      <Source>sphere.fbx</Source>
       <Importer>FbxImporter</Importer>
       <Options>IntermediateFile, DontCacheImportedData</Options>
       <Output>obj\x86\Debug\sphere_0.xml</Output>
       <Time>2012-12-01T00:08:14+00:00</Time>
+    </Item>
+    <Item>
+      <Source>Helicopter Sound Effect.wav</Source>
+      <Name>Helicopter Sound Effect</Name>
+      <Importer>WavImporter</Importer>
+      <Processor>SoundEffectProcessor</Processor>
+      <Options>None</Options>
+      <Output>\\psf\Home\Documents\Visual Studio 2010\Projects\BepuPhysicsHelicopter\BepuPhysicsHelicopter\BepuPhysicsHelicopter\bin\x86\Debug\Content\Helicopter Sound Effect.xnb</Output>
+      <Time>2012-12-06T17:51:33+00:00</Time>
+    </Item>
+    <Item>
+      <Source>ROTV.wav</Source>
+      <Name>ROTV</Name>
+      <Importer>WavImporter</Importer>
+      <Processor>SoundEffectProcessor</Processor>
+      <Options>None</Options>
+      <Output>\\psf\Home\Documents\Visual Studio 2010\Projects\BepuPhysicsHelicopter\BepuPhysicsHelicopter\BepuPhysicsHelicopter\bin\x86\Debug\Content\ROTV.xnb</Output>
+      <Time>2012-12-06T18:51:26+00:00</Time>
     </Item>
     <BuildSuccessful>true</BuildSuccessful>
     <Settings>

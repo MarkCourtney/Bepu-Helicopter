@@ -38,7 +38,7 @@ namespace BepuPhysicsHelicopter
             helicopter.body = new Box(position, width, height, length, 1);
             helicopter.localTransform = Matrix.CreateScale(width, height, length);
             helicopter.diffuse = new Vector3((float)random.NextDouble(), (float)random.NextDouble(), (float)random.NextDouble());
-            helicopter.Look = new Vector3(0, 0, 0);
+            helicopter.Look = new Vector3(1, 0, 0);
             helicopter.body.BecomeKinematic();
             Game1.Instance.Space.Add(helicopter.body);
             Game1.Instance.Children.Add(helicopter);
@@ -62,13 +62,13 @@ namespace BepuPhysicsHelicopter
 
             helicopter.body.Orientation = Quaternion.CreateFromYawPitchRoll(rotation, 0, 0);    // Change the helicopters base orientation X axis based on the rotation
 
-
+            Console.WriteLine(GamePad.GetState(PlayerIndex.One).ThumbSticks.Left);
             // For all keyStates the engine must be on
-            if (keyState.IsKeyDown(Keys.K) && Game1.Instance.Joints.engineOn)       
+            if (keyState.IsKeyDown(Keys.K) && Game1.Instance.Joints.engineOn || GamePad.GetState(PlayerIndex.One).ThumbSticks.Left.Y < -0.6f)      
             {
                 applyForce(helicopter.Look * 10);      // Apply a diretional force in the direction the helicopter is looking
             }
-            else if (keyState.IsKeyDown(Keys.I) && Game1.Instance.Joints.engineOn)
+            else if (keyState.IsKeyDown(Keys.I) && Game1.Instance.Joints.engineOn || GamePad.GetState(PlayerIndex.One).ThumbSticks.Left.Y > 0.6f)
             {
                 applyForce(helicopter.Look * -10);
             }
@@ -77,20 +77,20 @@ namespace BepuPhysicsHelicopter
                 velocity -= velocity * td;          // Slow down the velocity
             }
 
-            if (keyState.IsKeyDown(Keys.L) && Game1.Instance.Joints.engineOn)
+            if (keyState.IsKeyDown(Keys.L) && Game1.Instance.Joints.engineOn || GamePad.GetState(PlayerIndex.One).ThumbSticks.Right.X > 0.6f)
             {
                 rotation -= td;
             }
-            else if (keyState.IsKeyDown(Keys.J) && Game1.Instance.Joints.engineOn)
+            else if (keyState.IsKeyDown(Keys.J) && Game1.Instance.Joints.engineOn || GamePad.GetState(PlayerIndex.One).ThumbSticks.Right.X < -0.6f )
             {
                 rotation += td;                     // Rotate the helicopter
             }
 
-            if (keyState.IsKeyDown(Keys.Space) && Game1.Instance.Joints.engineOn)
+            if (keyState.IsKeyDown(Keys.Space) && Game1.Instance.Joints.engineOn || GamePad.GetState(PlayerIndex.One).Buttons.A == ButtonState.Pressed)
             {
                 applyForce(Up * 5);                    // Increase the vertical velocity
             }
-            else if (keyState.IsKeyDown(Keys.C) && Game1.Instance.Joints.engineOn)
+            else if (keyState.IsKeyDown(Keys.C) && Game1.Instance.Joints.engineOn || GamePad.GetState(PlayerIndex.One).Buttons.B == ButtonState.Pressed)
             {
                 applyForce(-Up * 5);
             }
@@ -103,9 +103,9 @@ namespace BepuPhysicsHelicopter
             {
                 applyForce(-Up * 4);
             }
-            if (helicopter.body.Position.Y < 7)
+            if (helicopter.body.Position.Y < 12)
             {
-                applyForce(Up * 1000);
+                applyForce(Up * 4);
             }
 
             velocity = velocity + force * td;
