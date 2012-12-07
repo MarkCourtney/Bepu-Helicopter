@@ -12,3 +12,4 @@
 \\psf\Home\Documents\Visual Studio 2010\Projects\BepuPhysicsHelicopter\BepuPhysicsHelicopter\BepuPhysicsHelicopter\bin\x86\Debug\Content\sphere.xnb
 \\psf\Home\Documents\Visual Studio 2010\Projects\BepuPhysicsHelicopter\BepuPhysicsHelicopter\BepuPhysicsHelicopter\bin\x86\Debug\Content\Helicopter Sound Effect.xnb
 \\psf\Home\Documents\Visual Studio 2010\Projects\BepuPhysicsHelicopter\BepuPhysicsHelicopter\BepuPhysicsHelicopter\bin\x86\Debug\Content\ROTV.xnb
+\\psf\Home\Documents\Visual Studio 2010\Projects\BepuPhysicsHelicopter\BepuPhysicsHelicopter\BepuPhysicsHelicopter\bin\x86\Debug\Content\Helicopter Controls.xnb

@@ -4,3 +4,4 @@ Content\cyl1.xnb
 Content\sphere.xnb
 Content\Helicopter Sound Effect.xnb
 Content\ROTV.xnb
+Content\Helicopter Controls.xnb

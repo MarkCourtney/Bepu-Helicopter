@@ -24,11 +24,12 @@ namespace BepuPhysicsHelicopter
         KeyboardState keyState;
         SoundEffect helicopterNoise, rideOfTheValkyries;
         Random random;
+        Texture2D controls;
 
         // New Vector position
-        Vector3 heliPos = new Vector3(-50, 15, -10);
-        Vector3 groundPos = new Vector3(0, 0, 0);
-        Vector3 seeSawPos = new Vector3(250, 140, 0);
+        Vector3 heliPos = new Vector3(-50, 15, -10);    // start location of helicopter base
+        Vector3 groundPos = new Vector3(0, 0, 0);       // location of ground
+        Vector3 seeSawPos = new Vector3(250, 140, 0);   // location of seesaw
 
         // New BepuEntity objects
         Ground groundEntity;
@@ -55,7 +56,6 @@ namespace BepuPhysicsHelicopter
 
         // floats for red, green, blue vales for diffuse and timeDelta
         float r, g, b, timeDelta;
-
 
 
         public static Game1 Instance
@@ -114,6 +114,8 @@ namespace BepuPhysicsHelicopter
 
             random = new Random();
 
+            controls = Content.Load<Texture2D>("Helicopter Controls");
+
             groundEntity = new Ground();
             otherEntities = new OtherEntities();
             hBase = new HelicopterBase();
@@ -131,8 +133,6 @@ namespace BepuPhysicsHelicopter
             base.Initialize();
         }
 
-
-        
 
 
         void resetWorld()     // Reset the world
@@ -153,9 +153,9 @@ namespace BepuPhysicsHelicopter
             // Create the entities that make up the seesaw
             seeSaw.createSeeSawBoard(seeSawPos + 7 * Vector3.Up, 40, 1, 25);
             seeSaw.createSeeSawHolder(seeSawPos, 1, 3, 10);
-            seeSaw.createSeeSawContainer(seeSawPos + Vector3.Up * 4 + Vector3.Right * 21, 1, 15, 10);
-            seeSaw.createSeeSawContainer(seeSawPos + Vector3.Backward * 15, 42, 8, 1);
-            seeSaw.createSeeSawContainer(seeSawPos + Vector3.Forward * 15, 42, 8, 1);
+            seeSaw.createSeeSawContainer(seeSawPos + Vector3.Up * 10 + Vector3.Right * 21, 1, 15, 10);
+            seeSaw.createSeeSawContainer(seeSawPos + Vector3.Up * 15 + Vector3.Backward * 15, 42, 14, 1);
+            seeSaw.createSeeSawContainer(seeSawPos + Vector3.Up * 15 + Vector3.Forward * 15, 42, 14, 1);
             otherEntities.createBall(seeSawPos + Vector3.Right * 5 + Vector3.Up * 15, 10);
 
             // Create all the ground entities
@@ -280,6 +280,10 @@ namespace BepuPhysicsHelicopter
                 child.Draw(gameTime);
             }
 
+            if (keyState.IsKeyDown(Keys.D1) || GamePad.GetState(PlayerIndex.One).Buttons.Start == ButtonState.Pressed)
+            {
+                spriteBatch.Draw(controls, new Vector2(1, 1), Color.White);
+            }
             spriteBatch.End();
         }
 

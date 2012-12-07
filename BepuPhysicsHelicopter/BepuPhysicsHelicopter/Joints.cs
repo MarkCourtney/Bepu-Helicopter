@@ -46,6 +46,8 @@ namespace BepuPhysicsHelicopter
 
         WeldJoint hTailJoint, hSkidJoint1, hSkidJoint2, hClawItemHolderJoint1, hClawItemHolderJoint2, hClawItemHolderJoint3, hClawItemHolderJoint4;
 
+        List<RevoluteJoint> revoluteJoints = new List<RevoluteJoint>();
+        List<WeldJoint> weldJoints = new List<WeldJoint>();
 
         public bool engineOn;
 
@@ -99,7 +101,7 @@ namespace BepuPhysicsHelicopter
             hClawHingeJoint1.Motor.IsActive = true;
             hClawHingeJoint1.Motor.Settings.Mode = MotorMode.Servomechanism;
             hClawHingeJoint1.Motor.Settings.Servo.Goal = -MathHelper.PiOver2;
-            //hClawHingeJoint1.Motor.Settings.Servo.SpringSettings.DampingConstant /= 20;   // Damping to quicken the claw contracting 
+            hClawHingeJoint1.Motor.Settings.Servo.SpringSettings.DampingConstant /= 20;   // Damping to quicken the claw contracting 
             hClawHingeJoint1.Motor.Settings.Servo.SpringSettings.StiffnessConstant /= 20;   // Stop the claw from over moving on the axis
 
             hClawHingeJoint1.Limit.IsActive = true;
@@ -149,22 +151,34 @@ namespace BepuPhysicsHelicopter
             // Joint for the seesaw with the ball located on it
             seeSawJoint = new RevoluteJoint(seeSaw.seeSawHolder.body, seeSaw.seeSawBoard.body, seeSaw.seeSawHolder.body.Position, Vector3.Forward);
 
-            // Add all the joints to Space
-            Game1.Instance.Space.Add(hBaseRotorJoint);
-            Game1.Instance.Space.Add(hTailJoint);
-            Game1.Instance.Space.Add(hSkidJoint1);
-            Game1.Instance.Space.Add(hSkidJoint2);
-            Game1.Instance.Space.Add(hTailRotorJoint);
+
+            revoluteJoints.Add(hBaseRotorJoint);
+            revoluteJoints.Add(hTailRotorJoint);
+            revoluteJoints.Add(hClawHingeJoint1);
+            revoluteJoints.Add(hClawHingeJoint2);
+            revoluteJoints.Add(hClawHingeJoint3);
+            revoluteJoints.Add(hClawHingeJoint4);
+            revoluteJoints.Add(seeSawJoint);
+
+            weldJoints.Add(hTailJoint);
+            weldJoints.Add(hSkidJoint1);
+            weldJoints.Add(hSkidJoint2);
+            weldJoints.Add(hClawItemHolderJoint1);
+            weldJoints.Add(hClawItemHolderJoint2);
+            weldJoints.Add(hClawItemHolderJoint3);
+            weldJoints.Add(hClawItemHolderJoint4);
+
+            for (int i = 0; i < revoluteJoints.Count ; i++)
+            {
+                Game1.Instance.Space.Add(revoluteJoints.ElementAt(i));
+            }
+
+            for (int i = 0; i < weldJoints.Count; i++)
+            {
+                Game1.Instance.Space.Add(weldJoints.ElementAt(i));
+            }
+
             Game1.Instance.Space.Add(hClawHolderJoint);
-            Game1.Instance.Space.Add(hClawHingeJoint1);
-            Game1.Instance.Space.Add(hClawHingeJoint2);
-            Game1.Instance.Space.Add(hClawHingeJoint3);
-            Game1.Instance.Space.Add(hClawHingeJoint4);
-            Game1.Instance.Space.Add(hClawItemHolderJoint1);
-            Game1.Instance.Space.Add(hClawItemHolderJoint2);
-            Game1.Instance.Space.Add(hClawItemHolderJoint3);
-            Game1.Instance.Space.Add(hClawItemHolderJoint4);
-            Game1.Instance.Space.Add(seeSawJoint);
         }
 
         public override void Update(GameTime gameTime)
@@ -172,6 +186,24 @@ namespace BepuPhysicsHelicopter
             float timeDelta = (float)gameTime.ElapsedGameTime.TotalSeconds;
             keyState = Keyboard.GetState();
 
+            if (keyState.IsKeyDown(Keys.T) || GamePad.GetState(PlayerIndex.One).Buttons.LeftShoulder == ButtonState.Pressed)
+            {
+                for (int i = 0; i < revoluteJoints.Count; i++)
+                {
+                    revoluteJoints.ElementAt(i).IsActive = false;
+                }
+
+                for (int i = 0; i < weldJoints.Count; i++)
+                {
+                    weldJoints.ElementAt(i).IsActive = false;
+                }
+
+                hClawHolderJoint.IsActive = false;
+
+                hBase.helicopter.body.BecomeDynamic(1000);
+
+                engineOn = false;
+            }
 
             // Applied keyboard and XBox Controller inputs
             if (keyState.IsKeyDown(Keys.U) || GamePad.GetState(PlayerIndex.One).Buttons.A == ButtonState.Pressed)
