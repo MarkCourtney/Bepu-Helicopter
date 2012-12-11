@@ -8,15 +8,9 @@ using Microsoft.Xna.Framework.GamerServices;
 using Microsoft.Xna.Framework.Graphics;
 using Microsoft.Xna.Framework.Input;
 using Microsoft.Xna.Framework.Media;
-using BEPUphysics.Collidables.MobileCollidables;
 using BEPUphysics.Constraints.SolverGroups;
 using BEPUphysics.Constraints.TwoEntity.Motors;
-using BEPUphysics.Entities;
 using BEPUphysics.Entities.Prefabs;
-using BEPUphysics.CollisionRuleManagement;
-using BEPUphysics.Materials;
-using BEPUphysics.CollisionShapes;
-using BEPUphysics.CollisionShapes.ConvexShapes;
 
 
 namespace BepuPhysicsHelicopter
@@ -85,7 +79,7 @@ namespace BepuPhysicsHelicopter
             hBaseRotorJoint.Motor.IsActive = false;
 
             // Well joints for skids on bottom of helicopter and tail, attach each entity to the helicopter
-            hTailJoint = new WeldJoint(hTail.tail.body, hBase.helicopter.body);     
+            hTailJoint = new WeldJoint(hTail.tail.body, hBase.helicopter.body);
             hSkidJoint1 = new WeldJoint(hSkid.skid1.body, hBase.helicopter.body);
             hSkidJoint2 = new WeldJoint(hSkid.skid2.body, hBase.helicopter.body);
 
@@ -94,17 +88,18 @@ namespace BepuPhysicsHelicopter
             hTailRotorJoint.Motor.IsActive = false;
 
             hClawHolderJoint = new SwivelHingeJoint(hBase.helicopter.body, hClawHolder.clawHolder.body, hBase.helicopter.body.Position, Vector3.Right);    // Joint for claw holder below helicopter
-           
+
             hClawHolderJoint.HingeLimit.IsActive = true;
-            hClawHolderJoint.HingeLimit.MinimumAngle = -MathHelper.Pi/45;
-            hClawHolderJoint.HingeLimit.MaximumAngle = MathHelper.Pi/45;
+            hClawHolderJoint.HingeLimit.MinimumAngle = -MathHelper.Pi / 45;
+            hClawHolderJoint.HingeLimit.MaximumAngle = MathHelper.Pi / 45;
 
             // 4 similar joints for hinge joints between the claw holder and a part of the claw
+            // The hinges code was created with help from the examuse ple Bepu Physics demo available from the website
             hClawHingeJoint1 = new RevoluteJoint(hClawHolder.clawHolder.body, hClawHinge.clawHinge1.body, hClawHolder.clawHolder.body.Position, Vector3.Forward);
             hClawHingeJoint1.Motor.IsActive = true;
             hClawHingeJoint1.Motor.Settings.Mode = MotorMode.Servomechanism;
             hClawHingeJoint1.Motor.Settings.Servo.Goal = -MathHelper.PiOver2;
-            hClawHingeJoint1.Motor.Settings.Servo.SpringSettings.DampingConstant /= 20;   // Damping to quicken the claw contracting 
+            hClawHingeJoint1.Motor.Settings.Servo.SpringSettings.DampingConstant /= 20;     // Damping to quicken the claw contracting 
             hClawHingeJoint1.Motor.Settings.Servo.SpringSettings.StiffnessConstant /= 20;   // Stop the claw from over moving on the axis
 
             hClawHingeJoint1.Limit.IsActive = true;
@@ -171,7 +166,7 @@ namespace BepuPhysicsHelicopter
             weldJoints.Add(hClawItemHolderJoint3);
             weldJoints.Add(hClawItemHolderJoint4);
 
-            
+
 
 
             entities.Add(hBase.helicopter);
@@ -191,17 +186,17 @@ namespace BepuPhysicsHelicopter
             entities.Add(hClawItemHolder.clawItemHolder3);
             entities.Add(hClawItemHolder.clawItemHolder4);
 
-            for (int i = 0; i < revoluteJoints.Count ; i++)
+            for (int i = 0; i < revoluteJoints.Count; i++)      // Add all the revolute joints to the space
             {
                 Game1.Instance.Space.Add(revoluteJoints.ElementAt(i));
             }
 
-            for (int i = 0; i < weldJoints.Count; i++)
+            for (int i = 0; i < weldJoints.Count; i++)          // Add all the weld joints to the space
             {
                 Game1.Instance.Space.Add(weldJoints.ElementAt(i));
             }
 
-            Game1.Instance.Space.Add(hClawHolderJoint);
+            Game1.Instance.Space.Add(hClawHolderJoint);     // Add the swivel hinge joint to the space
         }
 
         public override void Update(GameTime gameTime)
@@ -221,7 +216,7 @@ namespace BepuPhysicsHelicopter
                     weldJoints.ElementAt(i).IsActive = false;
                 }
 
-                hClawHolderJoint.IsActive = false;      // Remove all the swivel hinge joint
+                hClawHolderJoint.IsActive = false;              // Remove the swivel hinge joint
 
 
 
@@ -237,7 +232,7 @@ namespace BepuPhysicsHelicopter
             }
 
             // Applied keyboard and XBox Controller inputs
-            if (keyState.IsKeyDown(Keys.U) || GamePad.GetState(PlayerIndex.One).Buttons.A == ButtonState.Pressed)
+            if (keyState.IsKeyDown(Keys.A) || GamePad.GetState(PlayerIndex.One).Buttons.A == ButtonState.Pressed)
             {
                 // Contract the claw to pick up objects
                 hClawHingeJoint1.Motor.Settings.Servo.Goal = MathHelper.Max(hClawHingeJoint1.Motor.Settings.Servo.Goal + 3f * timeDelta, hClawHingeJoint1.Limit.MinimumAngle);
@@ -245,7 +240,7 @@ namespace BepuPhysicsHelicopter
                 hClawHingeJoint3.Motor.Settings.Servo.Goal = MathHelper.Max(hClawHingeJoint3.Motor.Settings.Servo.Goal + 3f * timeDelta, hClawHingeJoint3.Limit.MinimumAngle);
                 hClawHingeJoint4.Motor.Settings.Servo.Goal = MathHelper.Max(hClawHingeJoint4.Motor.Settings.Servo.Goal + 3f * timeDelta, hClawHingeJoint4.Limit.MinimumAngle);
             }
-            else if (keyState.IsKeyDown(Keys.Y) || GamePad.GetState(PlayerIndex.One).Buttons.B == ButtonState.Pressed)
+            else if (keyState.IsKeyDown(Keys.S) || GamePad.GetState(PlayerIndex.One).Buttons.B == ButtonState.Pressed)
             {
                 // Expand the claw to let go off objects
                 hClawHingeJoint1.Motor.Settings.Servo.Goal = MathHelper.Min(hClawHingeJoint1.Motor.Settings.Servo.Goal + 1.5f * timeDelta, hClawHingeJoint1.Limit.MinimumAngle);
@@ -259,10 +254,10 @@ namespace BepuPhysicsHelicopter
                 engineOn = true;            // Turn the engine on  
 
                 hnInstance.Play();          // Play the sound effects
-                rotvInstance.Play();        
+                rotvInstance.Play();
 
                 hBaseRotorJoint.Motor.IsActive = true;  // Start the both rotors
-                hTailRotorJoint.Motor.IsActive = true;  
+                hTailRotorJoint.Motor.IsActive = true;
 
                 oldState = keyState;
             }
@@ -298,7 +293,5 @@ namespace BepuPhysicsHelicopter
                 }
             }
         }
-
     }
 }
-

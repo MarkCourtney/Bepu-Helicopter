@@ -8,21 +8,11 @@ using Microsoft.Xna.Framework.GamerServices;
 using Microsoft.Xna.Framework.Graphics;
 using Microsoft.Xna.Framework.Input;
 using Microsoft.Xna.Framework.Media;
-using BEPUphysics;
 using BEPUphysics.Entities.Prefabs;
-using BEPUphysics.MathExtensions;
-using BEPUphysics.Constraints.TwoEntity.Joints;
-using BEPUphysics.Constraints.SolverGroups;
-using BEPUphysics.Collidables.MobileCollidables;
-using BEPUphysics.DataStructures;
-
 
 
 namespace BepuPhysicsHelicopter
 {
-    /// <summary>
-    /// This is a game component that implements IUpdateable.
-    /// </summary>
     public class HelicopterRotor : GameEntity
     {
         public BepuEntity rotor;
@@ -37,13 +27,6 @@ namespace BepuPhysicsHelicopter
             Game1.Instance.Space.Add(rotor.body);
             Game1.Instance.Children.Add(rotor);
             return rotor;
-        }
-
-        public override void Update(GameTime gameTime)
-        {
-            // TODO: Add your update code here
-
-            base.Update(gameTime);
         }
     }
 }

@@ -8,14 +8,13 @@ using Microsoft.Xna.Framework.GamerServices;
 using Microsoft.Xna.Framework.Graphics;
 using Microsoft.Xna.Framework.Input;
 using Microsoft.Xna.Framework.Media;
-using BEPUphysics;
 using BEPUphysics.Entities.Prefabs;
 
 namespace BepuPhysicsHelicopter
 {
     public class HelicopterClawHinge : GameEntity
     {
-        public BepuEntity clawHinge1, clawHinge2, clawHinge3, clawHinge4;
+        public BepuEntity clawHinge1, clawHinge2, clawHinge3, clawHinge4;   // 4 Hinges must be created seperately as the angles they must rotate around are different
         
         public BepuEntity createClawHinge1(Vector3 position, Vector3 offSet, float width, float height, float length)
         {

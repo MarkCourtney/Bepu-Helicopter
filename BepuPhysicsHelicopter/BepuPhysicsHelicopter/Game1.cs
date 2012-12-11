@@ -153,14 +153,14 @@ namespace BepuPhysicsHelicopter
             // Create the entities that make up the seesaw
             seeSaw.createSeeSawBoard(seeSawPos + 7 * Vector3.Up, 40, 1, 25);
             seeSaw.createSeeSawHolder(seeSawPos, 1, 3, 10);
-            seeSaw.createSeeSawContainer(seeSawPos + Vector3.Up * 10 + Vector3.Right * 21, 1, 15, 10);
-            seeSaw.createSeeSawContainer(seeSawPos + Vector3.Up * 15 + Vector3.Backward * 15, 42, 14, 1);
-            seeSaw.createSeeSawContainer(seeSawPos + Vector3.Up * 15 + Vector3.Forward * 15, 42, 14, 1);
-            otherEntities.createBall(seeSawPos + Vector3.Right * 5 + Vector3.Up * 15, 10);
+            seeSaw.createSeeSawContainer(seeSawPos + new Vector3(21, 10, 0), 1, 15, 10);
+            seeSaw.createSeeSawContainer(seeSawPos + new Vector3(0, 15, -15), 42, 18, 1);
+            seeSaw.createSeeSawContainer(seeSawPos + new Vector3(0, 15, 15), 42, 18, 1);
+            otherEntities.createBall(seeSawPos + new Vector3(0, 15, 5), 10);
 
             // Create all the ground entities
             groundEntity.createGround(new Vector3(0, 0, 0), 300, 1, 300);
-            groundEntity.createSlope(new Vector3(200, 50, 0), 150, 1, 300);
+            groundEntity.createSlope(new Vector3(200, 50, 0), 200, 1, 300);
 
             // Create all the boxes located in the world with different masses
             for (int i = 0; i < 30; i++)
@@ -205,16 +205,16 @@ namespace BepuPhysicsHelicopter
 
             hClawHolder.createClawHolder(heliPos, new Vector3(0, -7, 0), 5, 2);
 
-            hClawHinge.createClawHinge1(heliPos, new Vector3(5, -10, 0), 5, .1f, 2);
-            hClawHinge.createClawHinge2(heliPos, new Vector3(-5, -10, 0), 5, .1f, 2);
-            hClawHinge.createClawHinge3(heliPos, new Vector3(0, -10, 5), 2, .1f, 5);
-            hClawHinge.createClawHinge4(heliPos, new Vector3(0, -10, -5), 2, .1f, 5);
+            hClawHinge.createClawHinge1(heliPos, new Vector3(5, -10, 0), 5, .1f, 1.5f);
+            hClawHinge.createClawHinge2(heliPos, new Vector3(-5, -10, 0), 5, .1f, 1.5f);
+            hClawHinge.createClawHinge3(heliPos, new Vector3(0, -10, 5), 1.5f, .1f, 5);
+            hClawHinge.createClawHinge4(heliPos, new Vector3(0, -10, -5), 1.5f, .1f, 5);
 
 
-            hClawItemHolder.createClawItemHolder1(heliPos, new Vector3(7.5f, -12.6f, 0), .1f, 5, 2);
-            hClawItemHolder.createClawItemHolder2(heliPos, new Vector3(-7.5f, -12.6f, 0), .1f, 5, 2);
-            hClawItemHolder.createClawItemHolder3(heliPos, new Vector3(0, -12.6f, 7.5f), 2, 5, .1f);
-            hClawItemHolder.createClawItemHolder4(heliPos, new Vector3(0, -12.6f, -7.5f), 2, 5, .1f);
+            hClawItemHolder.createClawItemHolder1(heliPos, new Vector3(7.5f, -13.2f, 0), .1f, 6, 1.5f);
+            hClawItemHolder.createClawItemHolder2(heliPos, new Vector3(-7.5f, -13.2f, 0), .1f, 6, 1.5f);
+            hClawItemHolder.createClawItemHolder3(heliPos, new Vector3(0, -13.2f, 7.5f), 1.5f, 6, .1f);
+            hClawItemHolder.createClawItemHolder4(heliPos, new Vector3(0, -13.2f, -7.5f), 1.5f, 6, .1f);
 
             // Calls the joints class and creates all the joints
             joints = new Joints(helicopterNoise, rideOfTheValkyries, seeSaw, hBase, hRotor, hSkid, hTail, hTailRotor, hClawHolder, hClawHinge, hClawItemHolder);                                 // Add the helicopter base to the joints as part of the constructor

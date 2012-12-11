@@ -48,9 +48,9 @@ namespace BepuPhysicsHelicopter
 
         public void Update(GameTime gameTime)
         {
-            if (ball.body.Position.X < 100)                         // Ball picks up speed when it get to 100 on the X   
+            if (ball.body.Position.X < 150)                         // Ball picks up speed when it get to 100 on the X   
             {                                                       // Used to hit the boxes with more power
-                ball.body.AngularVelocity = new Vector3(0, 0, 3f);
+                ball.body.AngularVelocity = new Vector3(0, 0, 2.35f);
             }
         }
     }

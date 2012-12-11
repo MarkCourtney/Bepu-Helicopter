@@ -8,21 +8,11 @@ using Microsoft.Xna.Framework.GamerServices;
 using Microsoft.Xna.Framework.Graphics;
 using Microsoft.Xna.Framework.Input;
 using Microsoft.Xna.Framework.Media;
-using BEPUphysics;
 using BEPUphysics.Entities.Prefabs;
-using BEPUphysics.MathExtensions;
-using BEPUphysics.Constraints.TwoEntity.Joints;
-using BEPUphysics.Constraints.SolverGroups;
-using BEPUphysics.Collidables.MobileCollidables;
-using BEPUphysics.DataStructures;
-
 
 
 namespace BepuPhysicsHelicopter
 {
-    /// <summary>
-    /// This is a game component that implements IUpdateable.
-    /// </summary>
     public class HelicopterSkid
     {
         public BepuEntity skid1, skid2;

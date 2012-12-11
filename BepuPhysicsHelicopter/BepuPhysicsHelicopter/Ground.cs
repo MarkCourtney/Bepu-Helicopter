@@ -26,7 +26,7 @@ namespace BepuPhysicsHelicopter
             slope.modelName = "cube";                                              // Use the cube model
             slope.LoadContent();
             slope.body = new Box(position, width, height, length);                 // Place it in the world and give it's dimensions
-            slope.body.Orientation = Quaternion.CreateFromAxisAngle(new Vector3(0, 0, 0.7f), 1);
+            slope.body.Orientation = Quaternion.CreateFromAxisAngle(new Vector3(0, 0, 0.5f), 1);
             slope.body.BecomeKinematic();                                          // Make the entity state
             slope.localTransform = Matrix.CreateScale(width, height, length);      // Scale the model
             slope.diffuse = new Vector3(0.3f, 0.3f, 0.45f);                        // Set the colour to a shade of yellow

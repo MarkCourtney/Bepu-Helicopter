@@ -29,9 +29,6 @@ namespace BepuPhysicsHelicopter
 
         public override void Update(GameTime gameTime)
         {
-            float timeDelta = (float)(gameTime.ElapsedGameTime.Milliseconds / 1000.0f);
-
-
             // view is set using the setView() method
             projection = Matrix.CreatePerspectiveFieldOfView(MathHelper.ToRadians(45.0f), Game1.Instance.GraphicsDeviceManager.GraphicsDevice.Viewport.AspectRatio, 1.0f, 10000.0f);
         }

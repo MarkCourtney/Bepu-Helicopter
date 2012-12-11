@@ -8,7 +8,6 @@ using Microsoft.Xna.Framework.GamerServices;
 using Microsoft.Xna.Framework.Graphics;
 using Microsoft.Xna.Framework.Input;
 using Microsoft.Xna.Framework.Media;
-using BEPUphysics;
 using BEPUphysics.Entities.Prefabs;
 
 namespace BepuPhysicsHelicopter
@@ -16,7 +15,6 @@ namespace BepuPhysicsHelicopter
     public class HelicopterClawHolder : GameEntity
     {
         public BepuEntity clawHolder;
-        Random random = new Random();
 
         public BepuEntity createClawHolder(Vector3 position, Vector3 offSet, float height, float radius)
         {

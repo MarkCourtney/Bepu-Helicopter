@@ -8,23 +8,13 @@ using Microsoft.Xna.Framework.GamerServices;
 using Microsoft.Xna.Framework.Graphics;
 using Microsoft.Xna.Framework.Input;
 using Microsoft.Xna.Framework.Media;
-using BEPUphysics;
 using BEPUphysics.Entities.Prefabs;
-using BEPUphysics.MathExtensions;
-using BEPUphysics.Constraints.TwoEntity.Joints;
-using BEPUphysics.Constraints.SolverGroups;
-using BEPUphysics.Collidables.MobileCollidables;
-using BEPUphysics.DataStructures;
 
 
 namespace BepuPhysicsHelicopter
 {
-    /// <summary>
-    /// This is a game component that implements IUpdateable.
-    /// </summary>
     public class HelicopterBase : GameEntity
     {
-        Random random = new Random();
         public BepuEntity helicopter;
         KeyboardState keyState;
         float timeDelta, rotation;
@@ -37,7 +27,7 @@ namespace BepuPhysicsHelicopter
             helicopter.LoadContent();
             helicopter.body = new Box(position, width, height, length, 1);
             helicopter.localTransform = Matrix.CreateScale(width, height, length);
-            helicopter.diffuse = new Vector3((float)random.NextDouble(), (float)random.NextDouble(), (float)random.NextDouble());
+            helicopter.diffuse = new Vector3(0.7f, 0.2f, 0.2f);
             helicopter.Look = new Vector3(1, 0, 0);
             helicopter.body.BecomeKinematic();
             Game1.Instance.Space.Add(helicopter.body);
@@ -62,28 +52,41 @@ namespace BepuPhysicsHelicopter
 
             helicopter.body.Orientation = Quaternion.CreateFromYawPitchRoll(rotation, 0, 0);    // Change the helicopters base orientation X axis based on the rotation
 
-            // For all keyStates the engine must be on
-            if (keyState.IsKeyDown(Keys.K) && Game1.Instance.Joints.engineOn || GamePad.GetState(PlayerIndex.One).ThumbSticks.Left.Y < -0.6f)      
+            // Ensures the helicopter doesn;t move too fast for the joints
+            if (velocity.X > 18)
             {
-                applyForce(helicopter.Look * 10);       // Apply a diretional force in the look direction
+                velocity.X = 18;
             }
-            else if (keyState.IsKeyDown(Keys.I) && Game1.Instance.Joints.engineOn || GamePad.GetState(PlayerIndex.One).ThumbSticks.Left.Y > 0.6f)
+            if (velocity.Y > 18)
             {
-                applyForce(helicopter.Look * -10);      // Apply a diretional force in oppisite the look direction
+                velocity.Y = 18;
+            }
+            if (velocity.Z > 18)
+            {
+                velocity.Z = 18;
+            }
+
+            // For all keyStates the engine must be on
+            if ((keyState.IsKeyDown(Keys.K) || GamePad.GetState(PlayerIndex.One).ThumbSticks.Left.Y < -0.6f) && Game1.Instance.Joints.engineOn)
+            {
+                applyForce(helicopter.Look * 20);       // Apply a diretional force in the look direction
+            }
+            else if ((keyState.IsKeyDown(Keys.I) || GamePad.GetState(PlayerIndex.One).ThumbSticks.Left.Y > 0.6f) && Game1.Instance.Joints.engineOn)
+            {
+                applyForce(helicopter.Look * -20);      // Apply a diretional force in oppisite the look direction
             }
             else
             {
                 velocity -= velocity * timeDelta;       // Slow down the velocity
             }
-           
 
             if ((keyState.IsKeyDown(Keys.Space) || GamePad.GetState(PlayerIndex.One).Triggers.Right > 0.5f) && Game1.Instance.Joints.engineOn)
             {
-                applyForce(Vector3.Up * 10);            // Increase the vertical velocity
+                applyForce(Vector3.Up * 20);            // Increase the vertical velocity
             }
             else if ((keyState.IsKeyDown(Keys.C) || GamePad.GetState(PlayerIndex.One).Triggers.Left > 0.5f) && Game1.Instance.Joints.engineOn)
             {
-                applyForce(Vector3.Down * 10);          // Decrease the vertical velocity
+                applyForce(Vector3.Down * 20);          // Decrease the vertical velocity
             }
             else
             {
@@ -118,6 +121,8 @@ namespace BepuPhysicsHelicopter
 
             velocity = velocity + force * timeDelta;
             helicopter.body.Position = helicopter.body.Position + velocity * timeDelta;       // Apply the forces to the helicopter body position
+
+            Console.WriteLine(velocity);
 
             force = Vector3.Zero;   // Return the force to 0 each update loop
         }
