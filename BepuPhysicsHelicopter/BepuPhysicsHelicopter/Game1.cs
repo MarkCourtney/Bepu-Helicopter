@@ -156,7 +156,7 @@ namespace BepuPhysicsHelicopter
             seeSaw.createSeeSawContainer(seeSawPos + new Vector3(21, 10, 0), 1, 15, 10);
             seeSaw.createSeeSawContainer(seeSawPos + new Vector3(0, 15, -15), 42, 18, 1);
             seeSaw.createSeeSawContainer(seeSawPos + new Vector3(0, 15, 15), 42, 18, 1);
-            otherEntities.createBall(seeSawPos + new Vector3(0, 15, 5), 10);
+            otherEntities.createBall(seeSawPos + new Vector3(5, 15, 5), 10);
 
             // Create all the ground entities
             groundEntity.createGround(new Vector3(0, 0, 0), 300, 1, 300);
