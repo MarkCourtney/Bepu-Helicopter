@@ -6,9 +6,7 @@
 \\psf\Home\Documents\Visual Studio 2010\Projects\BepuPhysicsHelicopter\BepuPhysicsHelicopter\BepuPhysicsHelicopter\bin\x86\Debug\BEPUphysics.xml
 \\psf\Home\Documents\Visual Studio 2010\Projects\BepuPhysicsHelicopter\BepuPhysicsHelicopter\BepuPhysicsHelicopter\obj\x86\Debug\BepuPhysicsHelicopter.exe
 \\psf\Home\Documents\Visual Studio 2010\Projects\BepuPhysicsHelicopter\BepuPhysicsHelicopter\BepuPhysicsHelicopter\obj\x86\Debug\BepuPhysicsHelicopter.pdb
-\\psf\Home\Documents\Visual Studio 2010\Projects\BepuPhysicsHelicopter\BepuPhysicsHelicopter\BepuPhysicsHelicopter\bin\x86\Debug\Content\sprites_crosshairs.xnb
 \\psf\Home\Documents\Visual Studio 2010\Projects\BepuPhysicsHelicopter\BepuPhysicsHelicopter\BepuPhysicsHelicopter\bin\x86\Debug\Content\cube.xnb
-\\psf\Home\Documents\Visual Studio 2010\Projects\BepuPhysicsHelicopter\BepuPhysicsHelicopter\BepuPhysicsHelicopter\bin\x86\Debug\Content\cyl1.xnb
 \\psf\Home\Documents\Visual Studio 2010\Projects\BepuPhysicsHelicopter\BepuPhysicsHelicopter\BepuPhysicsHelicopter\bin\x86\Debug\Content\sphere.xnb
 \\psf\Home\Documents\Visual Studio 2010\Projects\BepuPhysicsHelicopter\BepuPhysicsHelicopter\BepuPhysicsHelicopter\bin\x86\Debug\Content\Helicopter Sound Effect.xnb
 \\psf\Home\Documents\Visual Studio 2010\Projects\BepuPhysicsHelicopter\BepuPhysicsHelicopter\BepuPhysicsHelicopter\bin\x86\Debug\Content\ROTV.xnb

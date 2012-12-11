@@ -223,7 +223,7 @@ namespace BepuPhysicsHelicopter
                 for (int i = 0; i < entities.Count; i++)
                 {
                     // Send each element in the list in a random direction
-                    entities.ElementAt(i).body.AngularVelocity = new Vector3((float)random.Next(100, 105), (float)random.Next(100, 105), (float)random.Next(100, 105));
+                    entities.ElementAt(i).body.AngularVelocity = new Vector3((float)random.Next(10, 15), (float)random.Next(10, 15), (float)random.Next(10, 15));
                 }
 
                 hBase.helicopter.body.BecomeDynamic(1);

@@ -42,13 +42,6 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="sprites_crosshairs.png">
-      <Name>sprites_crosshairs</Name>
-      <Importer>TextureImporter</Importer>
-      <Processor>TextureProcessor</Processor>
-    </Compile>
-  </ItemGroup>
-  <ItemGroup>
     <Compile Include="Helicopter Sound Effect.wav">
       <Name>Helicopter Sound Effect</Name>
       <Importer>WavImporter</Importer>
@@ -58,11 +51,6 @@
   <ItemGroup>
     <Compile Include="cube.fbx">
       <Name>cube</Name>
-      <Importer>FbxImporter</Importer>
-      <Processor>ModelProcessor</Processor>
-    </Compile>
-    <Compile Include="cyl1.fbx">
-      <Name>cyl1</Name>
       <Importer>FbxImporter</Importer>
       <Processor>ModelProcessor</Processor>
     </Compile>
