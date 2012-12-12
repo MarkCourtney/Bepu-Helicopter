@@ -169,7 +169,7 @@ namespace BepuPhysicsHelicopter
                 g = (float) random.NextDouble();
                 b = (float) random.NextDouble();
 
-                otherEntities.createBox(new Vector3(random.Next(-150, -50), 4, random.Next(-150, 150)), 5, 5, 5, r, g, b, 100);
+                otherEntities.createBox(new Vector3(random.Next(-150, -50), 4, random.Next(-150, 150)), 5, 5, 5, r, g, b, 100, (float)random.NextDouble());
             }
 
             int k = 0;
@@ -182,10 +182,10 @@ namespace BepuPhysicsHelicopter
                     g = (float)random.NextDouble();
                     b = (float)random.NextDouble();
 
-                    otherEntities.createBox(new Vector3(45, k, -30 + 10 * i), 5, 5, 10, r, g, b, 1);
-                    otherEntities.createBox(new Vector3(30, k, -30 + 10 * i), 5, 5, 10, r, g, b, 1);
-                    otherEntities.createBox(new Vector3(15, k, -30 + 10 * i), 5, 5, 10, r, g, b, 1);
-                    otherEntities.createBox(new Vector3(0, k, -30 + 10 * i), 5, 5, 10, r, g, b, 1);
+                    otherEntities.createBox(new Vector3(45, k, -30 + 10 * i), 5, 5, 10, r, g, b, 1, 0);
+                    otherEntities.createBox(new Vector3(30, k, -30 + 10 * i), 5, 5, 10, r, g, b, 1, 0);
+                    otherEntities.createBox(new Vector3(15, k, -30 + 10 * i), 5, 5, 10, r, g, b, 1, 0);
+                    otherEntities.createBox(new Vector3(0, k, -30 + 10 * i), 5, 5, 10, r, g, b, 1, 0);
                 }
             }
 

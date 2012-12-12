@@ -19,13 +19,14 @@ namespace BepuPhysicsHelicopter
 
         Random random = new Random();
 
-        public BepuEntity createBox(Vector3 position, float width, float height, float length, float r, float g, float b, int mass)
+        public BepuEntity createBox(Vector3 position, float width, float height, float length, float r, float g, float b, int mass, float orientation)
         {
             box = new BepuEntity();
             box.modelName = "cube";                                              // Use the cube model
             box.LoadContent();
             box.body = new Box(position, width, height, length, mass);           // Place it in the world and give it's dimensions
             box.localTransform = Matrix.CreateScale(width, height, length);      // Scale the model
+            box.body.Orientation = Quaternion.CreateFromAxisAngle(new Vector3(0, orientation, 0), 1);
             box.diffuse = new Vector3(r, g, b);                                  // Set the colour to a shade of yellow
             Game1.Instance.Space.Add(box.body);                                  // Add to the world
             Game1.Instance.Children.Add(box);                                    // Add to the list of entities
